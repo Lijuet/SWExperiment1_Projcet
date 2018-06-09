@@ -24,7 +24,7 @@ public class Reader {
         String[] field = null;
         try {
             StudentInfo = new FileInputStream(FileName);
-            br = new BufferedReader(new InputStreamReader(StudentInfo));
+            br = new BufferedReader(new InputStreamReader(StudentInfo, "MS949"));
             String line;
             while ((line = br.readLine()) != null)
             {

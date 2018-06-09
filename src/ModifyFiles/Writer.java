@@ -1,11 +1,8 @@
 package ModifyFiles;
 import Components.Student;
 import java.io.*;
-import java.util.ArrayList;
 
 public class Writer {
-    FileInputStream StudentInfo;
-    BufferedReader br = null;
     String FileName;
 
     public Writer (String Filename)
@@ -19,7 +16,7 @@ public class Writer {
     }
 
 
-    public void StudentWriter(Student Student)
+    public void studentWriter(Student Student)
     {
         try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(FileName, true))))
         {

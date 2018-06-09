@@ -1,5 +1,6 @@
 package Components;
 
+import ModifyFiles.Delete;
 import ModifyFiles.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,8 +38,10 @@ public class Lecture implements HandlingStudents{
 		if(!list_student.containsKey(studentId)) {
 			list_student.put(studentId, newStudent);
 			//info add by popup
+			/*******학생을 csv파일에서도 추가******/
 			Writer a = new Writer();
-			a.StudentWriter(newStudent);
+			a.studentWriter(newStudent);
+			/***********************************/
 			System.out.println("We add Student " + newStudent.getName() + "( " + String.valueOf(newStudent.getStudentId()) + " ) information.");
 		}else {//when there is already student with input student Id
 			System.out.println("There is already student with " + String.valueOf(newStudent.getStudentId()));
@@ -51,6 +54,10 @@ public class Lecture implements HandlingStudents{
 		if(list_student.containsKey(studentId)) {
 			Student temp = (Student)list_student.get(studentId);
 			list_student.remove(studentId);
+			/*******학생을 csv파일에서도 삭제******/
+			Delete a = new Delete();
+			a.studentDelete(studentId);
+			/***********************************/
 			
 			//info delete by popup
 			System.out.println("We delete Student " + temp.getName() +

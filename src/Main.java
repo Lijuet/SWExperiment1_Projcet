@@ -16,7 +16,7 @@ public class Main {
 		Lecture SP = new Lecture("SystemProgramming");
 		Reader studentReader = new Reader();
 		ArrayList<Student> SystemStudent = new ArrayList<>();
-		studentReader.studentReader(SystemStudent);
+		studentReader.studentReader(SystemStudent); // System_StudentInfo 안의 학생들이 저장됨
 
 		
 		SP.addStudent(new Student(name,null,null,Id));
