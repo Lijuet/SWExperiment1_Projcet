@@ -1,6 +1,8 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 import Components.*;
+import WriterReader.Reader;
 
 public class Main {
 
@@ -12,6 +14,10 @@ public class Main {
 		s.close();
 		
 		Lecture SP = new Lecture("SystemProgramming");
+		Reader studentReader = new Reader();
+		ArrayList<Student> SystemStudent = new ArrayList<>();
+		studentReader.StudentReader(SystemStudent);
+
 		
 		SP.addStudent(new Student(name,null,null,Id));
 		SP.addStudent(new Student("test1",null,null,1));
