@@ -11,6 +11,9 @@ public class Student extends Person{
 	
 	//getter and setter of fields
 	public int getStudentId() { return studentId; }
+	public String getEmailAddress() { return emailAddress; }
+	public String getPhoneNumber() { return phoneNumber; }
+	public String getName() { return name; }
 	
 	public void setStudentId(int studentId) { this.studentId = studentId; }
 

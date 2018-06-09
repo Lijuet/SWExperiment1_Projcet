@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 import Components.*;
-import WriterReader.Reader;
+import ModifyFiles.Reader;
 
 public class Main {
 
@@ -16,11 +16,11 @@ public class Main {
 		Lecture SP = new Lecture("SystemProgramming");
 		Reader studentReader = new Reader();
 		ArrayList<Student> SystemStudent = new ArrayList<>();
-		studentReader.StudentReader(SystemStudent);
+		studentReader.studentReader(SystemStudent);
 
 		
 		SP.addStudent(new Student(name,null,null,Id));
-		SP.addStudent(new Student("test1",null,null,1));
+		SP.addStudent(new Student("test1","asdasd","010",1));
 		SP.addStudent(new Student("test1",null,null,2));
 		
 		SP.searchStudent(2);

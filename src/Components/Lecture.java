@@ -1,5 +1,6 @@
 package Components;
 
+import ModifyFiles.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -36,6 +37,8 @@ public class Lecture implements HandlingStudents{
 		if(!list_student.containsKey(studentId)) {
 			list_student.put(studentId, newStudent);
 			//info add by popup
+			Writer a = new Writer();
+			a.StudentWriter(newStudent);
 			System.out.println("We add Student " + newStudent.getName() + "( " + String.valueOf(newStudent.getStudentId()) + " ) information.");
 		}else {//when there is already student with input student Id
 			System.out.println("There is already student with " + String.valueOf(newStudent.getStudentId()));

@@ -1,4 +1,4 @@
-package WriterReader;
+package ModifyFiles;
 
 import Components.Student;
 import java.io.*;
@@ -20,7 +20,7 @@ public class Reader {
     }
 
 
-    public String[] StudentReader(ArrayList<Student> Students) {
+    public String[] studentReader(ArrayList<Student> Students) {
         String[] field = null;
         try {
             StudentInfo = new FileInputStream(FileName);

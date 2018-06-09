@@ -1,4 +1,4 @@
-package WriterReader;
+package ModifyFiles;
 
 public class Delete {
 }
