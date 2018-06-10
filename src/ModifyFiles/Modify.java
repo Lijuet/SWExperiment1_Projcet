@@ -16,7 +16,7 @@ public class Modify {
     public Modify(String name, String FileName) { this.name = name; this.FileName = FileName; }
     public Modify(String name) { this.name = name; this.FileName = "System_StudentInfo.csv"; }
 
-    public void modifyName(String afterName) // 이름을 수정
+    public void modifyName(String afterName) // modify name
     {
         String dummy = "";
         try

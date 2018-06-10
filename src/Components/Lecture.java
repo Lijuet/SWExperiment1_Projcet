@@ -16,11 +16,12 @@ public class Lecture implements HandlingStudents{
 		list_professor = new ArrayList<>();
 		list_student = new HashMap<>();	
 	}
-	
+
 	//getter and setter of fields
 	public String getName() { return name; }
 	public void setName(String name) { this.name = name; }
-	
+
+	public void setStudent(ArrayList<Student> students) { for(Student st : students) addStudent(st);}
 
 	public HashMap<Integer ,Student> readStudentListFile(String path) {
 		/* copy students Information form file which connected with path
