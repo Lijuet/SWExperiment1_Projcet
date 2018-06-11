@@ -63,7 +63,7 @@ public class HandlingStudentsFrame extends JFrame {
         btnAddStudentInfo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddStudentDialog dialog = new AddStudentDialog();
+                AddStudentDialog dialog = new AddStudentDialog(lecture);
                 dialog.pack();
                 dialog.setVisible(true);
                 dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -74,7 +74,7 @@ public class HandlingStudentsFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // int Id = Integer.parseInt(writeId.getText());
 
-                DeleteStudentDialog dialog = new DeleteStudentDialog();
+                DeleteStudentDialog dialog = new DeleteStudentDialog(lecture);
                 dialog.pack();
                 dialog.setVisible(true);
                 dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -87,7 +87,7 @@ public class HandlingStudentsFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // int Id = Integer.parseInt(writeId.getText());
 
-                SearchStudentDialog dialog = new SearchStudentDialog();
+                SearchStudentDialog dialog = new SearchStudentDialog(lecture);
                 dialog.pack();
                 dialog.setVisible(true);
                 dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -98,7 +98,7 @@ public class HandlingStudentsFrame extends JFrame {
         btnReviseStudentInfo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ModifyStudentDialog dialog = new ModifyStudentDialog();
+                ModifyStudentDialog dialog = new ModifyStudentDialog(lecture);
                 dialog.pack();
                 dialog.setVisible(true);
                 dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

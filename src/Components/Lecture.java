@@ -69,48 +69,30 @@ public class Lecture implements HandlingStudents{
 		}		
 	}
 	
-	public Student searchStudent(int studentId) {
+	public String searchStudent(int studentId) {
 		//read information from view 
-		
+		String studentInfo = null;
+
 		if(list_student.containsKey(studentId)) {
 			Student temp = (Student)list_student.get(studentId);
 			
 			//info delete by popup
-			System.out.println("Student name: " + temp.getName());
-			System.out.println("Student Id: " + studentId);
-			System.out.println("Student e-mail: " + temp.getEmailAddress());
-			System.out.println("Student phone: " + temp.getPhoneNumber());
+			// System.out.println("Student name: " + temp.getName());
+			// System.out.println("Student Id: " + studentId);
+			// System.out.println("Student e-mail: " + temp.getEmailAddress());
+			// System.out.println("Student phone: " + temp.getPhoneNumber());
+			studentInfo = "Student name: " + temp.getName() + "\n" + "Student Id: " + studentId + "\n" + temp.getEmailAddress()
+					+ "\n" + temp.getPhoneNumber();
 
-			return temp;
+			return studentInfo;
 		}else {//when there is no student with input student Id
-			System.out.println("There is no such student with " + String.valueOf(studentId));
-			return null;
+			// System.out.println("There is no such student with " + String.valueOf(studentId))
+			studentInfo = "There is no such student with " + String.valueOf(studentId);
 		}
+		return studentInfo;
 	}
 
-	public Student modifyStudent(int studentId) {
-		//read information from view
-
-		if(list_student.containsKey(studentId)) {
-			Student temp = (Student)list_student.get(studentId);
-
-			//info delete by popup
-			System.out.println("Student name: " + temp.getName());
-			System.out.println("Student Id: " + studentId);
-			System.out.println("Student e-mail: " + temp.getEmailAddress());
-			System.out.println("Student phone: " + temp.getPhoneNumber());
-
-			/*******Modify Student in CSV file******/
-			Modify a = new Modify(studentId);
-			/***************************************/
-
-			return temp;
-		}else {//when there is no student with input student Id
-			System.out.println("There is no such student with " + String.valueOf(studentId));
-			return null;
-		}
-	}
-/*
+	/*
 	public Student searchStudent(String name) {
 		//read information from view
 
@@ -130,4 +112,76 @@ public class Lecture implements HandlingStudents{
 		}
 	}
 	*/
+
+	public Student modifyStudentName(int studentId, String change) {
+		//read information from view
+
+		if(list_student.containsKey(studentId)) {
+			Student temp = (Student)list_student.get(studentId);
+
+			/*******Modify Student in CSV file******/
+			Modify a = new Modify(studentId);
+			a.modifyName(change);
+			/***************************************/
+			return temp;
+		}else {//when there is no student with input student Id
+			System.out.println("There is no such student with " + String.valueOf(studentId));
+			return null;
+		}
+	}
+
+	public Student modifyStudentID(int studentId, String change) {
+		//read information from view
+
+		if(list_student.containsKey(studentId)) {
+			Student temp = (Student)list_student.get(studentId);
+
+			/*******Modify Student in CSV file******/
+			Modify a = new Modify(studentId);
+			a.modifyStudentNumber(change);
+			/***************************************/
+
+			return temp;
+		}else {//when there is no student with input student Id
+			System.out.println("There is no such student with " + String.valueOf(studentId));
+			return null;
+		}
+	}
+
+	public Student modifyStudentEmail(int studentId, String change) {
+		//read information from view
+
+		if(list_student.containsKey(studentId)) {
+			Student temp = (Student)list_student.get(studentId);
+			System.out.println("Student phone: " + temp.getPhoneNumber());
+
+			/*******Modify Student in CSV file******/
+			Modify a = new Modify(studentId);
+			a.modifyMail(change);
+			/***************************************/
+
+			return temp;
+		}else {//when there is no student with input student Id
+			System.out.println("There is no such student with " + String.valueOf(studentId));
+			return null;
+		}
+	}
+
+	public Student modifyStudentNumber(int studentId, String change) {
+		//read information from view
+
+		if(list_student.containsKey(studentId)) {
+			Student temp = (Student)list_student.get(studentId);System.out.println("Student phone: " + temp.getPhoneNumber());
+
+			/*******Modify Student in CSV file******/
+			Modify a = new Modify(studentId);
+			a.modifyStudentNumber(change);
+			/***************************************/
+
+			return temp;
+		}else {//when there is no student with input student Id
+			System.out.println("There is no such student with " + String.valueOf(studentId));
+			return null;
+		}
+	}
 }

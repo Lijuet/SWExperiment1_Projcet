@@ -1,3 +1,6 @@
+import Components.Lecture;
+import Components.Student;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -5,22 +8,16 @@ public class AddStudentDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField addNewStudentTextField;
-    private JTextField nameTextField;
-    private JEditorPane editorPane1;
-    private JTextField idTextField;
+    private JTextField textField1;
+    private JTextField textField2;
     private JTextField textField3;
+    private JTextField textField4;
 
-    public AddStudentDialog() {
+    public AddStudentDialog(Lecture lecture) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
-        buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
-        });
 
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -42,6 +39,21 @@ public class AddStudentDialog extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
+        /*********************************************/
+        buttonOK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = textField1.getText();;
+                int studentID = Integer.parseInt(textField2.getText());;
+                String Email = textField3.getText();;
+                String phoneNumber = textField4.getText();;
+
+                Student newStudent = new Student(name, Email, phoneNumber, studentID);
+                lecture.addStudent(newStudent);
+            }
+        });
+
     }
 
     private void onOK() {
@@ -55,7 +67,7 @@ public class AddStudentDialog extends JDialog {
     }
 
     public static void main(String[] args) {
-        AddStudentDialog dialog = new AddStudentDialog();
+        AddStudentDialog dialog = new AddStudentDialog(null);
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
