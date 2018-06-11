@@ -1,6 +1,7 @@
 package Components;
 
 import ModifyFiles.Delete;
+import ModifyFiles.Modify;
 import ModifyFiles.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,4 +87,47 @@ public class Lecture implements HandlingStudents{
 			return null;
 		}
 	}
+
+	public Student modifyStudent(int studentId) {
+		//read information from view
+
+		if(list_student.containsKey(studentId)) {
+			Student temp = (Student)list_student.get(studentId);
+
+			//info delete by popup
+			System.out.println("Student name: " + temp.getName());
+			System.out.println("Student Id: " + studentId);
+			System.out.println("Student e-mail: " + temp.getEmailAddress());
+			System.out.println("Student phone: " + temp.getPhoneNumber());
+
+			/*******Modify Student in CSV file******/
+			Modify a = new Modify(studentId);
+			/***************************************/
+
+			return temp;
+		}else {//when there is no student with input student Id
+			System.out.println("There is no such student with " + String.valueOf(studentId));
+			return null;
+		}
+	}
+/*
+	public Student searchStudent(String name) {
+		//read information from view
+
+		if(list_student.containsKey(studentId)) {
+			Student temp = (Student)list_student.get(studentId);
+
+			//info delete by popup
+			System.out.println("Student name: " + temp.getName());
+			System.out.println("Student Id: " + studentId);
+			System.out.println("Student e-mail: " + temp.getEmailAddress());
+			System.out.println("Student phone: " + temp.getPhoneNumber());
+
+			return temp;
+		}else {//when there is no student with input student Id
+			System.out.println("There is no such student with " + String.valueOf(studentId));
+			return null;
+		}
+	}
+	*/
 }

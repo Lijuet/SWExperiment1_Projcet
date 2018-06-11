@@ -26,6 +26,7 @@ public class Reader {
             StudentInfo = new FileInputStream(FileName);
             br = new BufferedReader(new InputStreamReader(StudentInfo, "MS949"));
             String line;
+            line = br.readLine();
             while ((line = br.readLine()) != null)
             {
                 field = line.split(",");

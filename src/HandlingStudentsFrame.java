@@ -2,7 +2,6 @@ import Components.*;
 import ModifyFiles.Reader;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -73,26 +72,36 @@ public class HandlingStudentsFrame extends JFrame {
         btnDeleteStudentInfo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int Id = Integer.parseInt(writeId.getText());
+                // int Id = Integer.parseInt(writeId.getText());
 
+                DeleteStudentDialog dialog = new DeleteStudentDialog();
+                dialog.pack();
+                dialog.setVisible(true);
+                dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 // TODO Auto-generated method stub
-                lecture.deleteStudent(Id);
+                // lecture.deleteStudent(Id);
             }
         });
         btnSearchStudentInfo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int Id = Integer.parseInt(writeId.getText());
+                // int Id = Integer.parseInt(writeId.getText());
 
+                SearchStudentDialog dialog = new SearchStudentDialog();
+                dialog.pack();
+                dialog.setVisible(true);
+                dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 // TODO Auto-generated method stub
-                lecture.searchStudent(Id);
+                // lecture.searchStudent(Id);
             }
         });
         btnReviseStudentInfo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //바꾸는 콘솔창 띄우기
-
+                ModifyStudentDialog dialog = new ModifyStudentDialog();
+                dialog.pack();
+                dialog.setVisible(true);
+                dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 // TODO Auto-generated method stub
                 //lecture.deleteStudent(Id);
             }
