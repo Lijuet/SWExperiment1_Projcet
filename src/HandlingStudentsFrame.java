@@ -20,7 +20,6 @@ public class HandlingStudentsFrame extends JFrame {
     private JButton btnDeleteStudentInfo;
     private JButton btnSearchStudentInfo;
     private JPanel panel;
-    private JTextField STUDENTTextField;
 
     /**
      * Launch the application.
