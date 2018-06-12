@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class EmailSent extends JFrame {
     private ArrayList<String> recipients;
@@ -20,8 +19,10 @@ public class EmailSent extends JFrame {
     private JTextField idTextField;
     private JTextField id;
     private JTextField name;
-    private JButton OKButton;
+    private JButton btnSent;
     private JPanel panel;
+    private JTextField sendEMailTextField;
+    private JButton btnCancel;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -39,11 +40,15 @@ public class EmailSent extends JFrame {
     public EmailSent(){
         recipients = new ArrayList<>();
         contents = null;
-        OKButton.addActionListener(new ActionListener() {
+        btnSent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new mailSending(content.getText(), Integer.parseInt(id.getText())).start();
             }
+        });
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { dispose(); }
         });
     }
 
@@ -54,6 +59,10 @@ public class EmailSent extends JFrame {
 
     public ArrayList<String> getRecipients() { return recipients; }
     public String getContents() { return contents; }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }
 
 class mailSending extends Thread {
