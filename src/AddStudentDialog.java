@@ -43,14 +43,30 @@ public class AddStudentDialog extends JDialog {
         /*********************************************/
         buttonOK.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                String name = textField1.getText();;
-                int studentID = Integer.parseInt(textField2.getText());;
-                String Email = textField3.getText();;
-                String phoneNumber = textField4.getText();;
-
-                Student newStudent = new Student(name, Email, phoneNumber, studentID);
-                lecture.addStudent(newStudent);
+            public void actionPerformed(ActionEvent e)
+            {
+                int studentID = -1;
+                String temp;
+                temp = textField2.getText();
+                String name = textField1.getText();
+                String Email = textField3.getText();
+                String phoneNumber = textField4.getText();
+                try {
+                    studentID = Integer.parseInt(temp);
+                    if (name.equals("") || studentID == -1 || Email.equals("") || phoneNumber.equals("")) {
+                        JOptionPane.showMessageDialog(null, "모든 정보를 입력해 주세요");
+                    } else {
+                        int result = JOptionPane.showConfirmDialog(null, "추가하시겠습니까?", "Add", 0);
+                        if (result == JOptionPane.OK_OPTION) {
+                            JOptionPane.showMessageDialog(null, "추가가 완료되었습니다"); // "추가가 완료되었습니다" 창 출력
+                            Student newStudent = new Student(name, Email, phoneNumber, studentID);
+                            lecture.addStudent(newStudent);
+                        }
+                    }
+                }
+                catch (NumberFormatException a){
+                    JOptionPane.showMessageDialog(null, "학번에 숫자를 입력해 주세요");
+                }
             }
         });
 

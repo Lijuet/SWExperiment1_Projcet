@@ -76,19 +76,14 @@ public class Lecture implements HandlingStudents{
 	}
 	
 	public String searchStudent(int studentId) {
-		//read information from view 
+		//read information from view
 		String studentInfo = null;
 
 		if(list_student.containsKey(studentId)) {
 			Student temp = (Student)list_student.get(studentId);
-			
-			//info delete by popup
-			// System.out.println("Student name: " + temp.getName());
-			// System.out.println("Student Id: " + studentId);
-			// System.out.println("Student e-mail: " + temp.getEmailAddress());
-			// System.out.println("Student phone: " + temp.getPhoneNumber());
-			studentInfo = "Student name: " + temp.getName() + "\n" + "Student Id: " + studentId + "\n" + temp.getEmailAddress()
-					+ "\n" + temp.getPhoneNumber();
+
+			studentInfo = "Student name: " + temp.getName() + "\n" + "Student Id: " + studentId + "\n" + "Email: " + temp.getEmailAddress()
+					+ "\n" + "Phone number: " + temp.getPhoneNumber();
 
 			return studentInfo;
 		}else {//when there is no student with input student Id
@@ -96,6 +91,12 @@ public class Lecture implements HandlingStudents{
 			studentInfo = "There is no such student with " + String.valueOf(studentId);
 		}
 		return studentInfo;
+	}
+
+	public int existStudent(int studentId)
+	{
+		if(list_student.containsKey(studentId)) { return 1; }
+		else { return 0; }
 	}
 
 

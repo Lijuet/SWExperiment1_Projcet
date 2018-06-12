@@ -36,8 +36,20 @@ public class SearchStudentDialog extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                studentNumber = Integer.parseInt(getStudentNumber.getText());
-                textPane1.setText(lecture.searchStudent(studentNumber));
+                String input = getStudentNumber.getText();
+                if (input.equals(""))
+                {
+                    JOptionPane.showMessageDialog(null, "학번을 입력해 주세요");
+                }
+                else
+                {
+                    try {
+                        studentNumber = Integer.parseInt(input);
+                        textPane1.setText(lecture.searchStudent(studentNumber));
+                    } catch (NumberFormatException a) {
+                        JOptionPane.showMessageDialog(null, "학번에 숫자를 입력해 주세요");
+                    }
+                }
             } // 학번까지 받아옴. 학생정보를 창에 띄워주면 됨
         });
 
