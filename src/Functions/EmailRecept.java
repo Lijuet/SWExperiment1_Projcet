@@ -2,62 +2,44 @@ package Functions;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class EmailRecept extends JFrame{
+public class EmailRecept extends JDialog{
     public JPanel panel;
-    public JTextField state;
-    private JButton btnRead;
+    private JTextField textName;
+    private JTextField nameInfo;
+    private JTextField IdInfo;
+    private JTextField textId;
     private JTextField content;
-    private ArrayList<String> message;
+    private JButton cancelButton;
+    private String message;
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
+    EmailRecept(String message){
+        setContentPane(panel);
+        setModal(true);
+        getRootPane().setDefaultButton(cancelButton);
+        this.message = message;
 
-            public void run() {
-                EmailRecept frame = new EmailRecept();
-                frame.setContentPane(new EmailRecept().panel);
-                frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                frame.pack();
-                frame.setVisible(true);
 
+        // call onCancel() when cross is clicked
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                dispose();
             }
         });
-    }
 
-    public void addMessage(String message){
-        this.message.add(message);
-        revalidate();
-    }
-
-    public class CommThread extends Thread {
-
-        private Socket soc;
-
-        public CommThread (Socket soc) {
-            this.soc = soc;
-        }
-
-        public void run () {
-            try {
-                DataInputStream dis = new DataInputStream (soc.getInputStream());
-
-                System.out.println("You got a message!");
-                String message = dis.readUTF();
-                System.out.println(message);
-                content.setText(message);
-                repaint();
-
-                dis.close();
-                soc.close();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+        // call onCancel() on ESCAPE
+        panel.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
             }
-        }
-    }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
+        content.setText(message);
+    }
 }
