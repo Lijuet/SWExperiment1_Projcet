@@ -57,28 +57,30 @@ public class ModifyStudentDialog extends JDialog{
             }
         });
 
-        changeButton.addActionListener(new ActionListener() { // lectureì—ì„œ student numberì˜ í•™ìƒì´ ì¡´ì¬í• ë•Œ
+        changeButton.addActionListener(new ActionListener() { // lecture¿¡¼­ student numberÀÇ ÇĞ»ıÀÌ Á¸ÀçÇÒ¶§
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text2 = textField2.getText();
-                /**if elseë¡œ studentê°€ ì¡´ì¬í• ë–„ ì•ˆí• ë•Œ ë‚˜ëˆ„ê¸°**/
+                /**if else·Î student°¡ Á¸ÀçÇÒ‹š ¾ÈÇÒ¶§ ³ª´©±â**/
                 /**************decide what to change*************/
-                if (whatToChange.getSelectedIndex() == 0) // Name
+                int temp = whatToChange.getSelectedIndex();
+
+                if (temp == 0) // Name
                 {
                     lecture.modifyStudentName(studentNumber, text2);
                 }
 
-                else if (whatToChange.getSelectedIndex() == 1) // Student number
+                else if (temp == 1) // Student number
                 {
                     lecture.modifyStudentID(studentNumber, text2);
                 }
 
-                else if (whatToChange.getSelectedIndex() == 2) // Email
+                else if (temp == 2) // Email
                 {
                     lecture.modifyStudentEmail(studentNumber, text2);
                 }
 
-                else if (whatToChange.getSelectedIndex() == 3) // Phone number
+                else if (temp == 3) // Phone number
                 {
                     lecture.modifyStudentNumber(studentNumber, text2);
                 }

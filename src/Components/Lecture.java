@@ -13,7 +13,7 @@ public class Lecture implements HandlingStudents{
 	
 	//constructor
 	public Lecture(String name){ 
-		this.name = name;
+		this.name = name.trim();
 		list_professor = new ArrayList<>();
 		list_student = new HashMap<>();	
 	}
@@ -22,7 +22,13 @@ public class Lecture implements HandlingStudents{
 	public String getName() { return name; }
 	public void setName(String name) { this.name = name; }
 
-	public void setStudent(ArrayList<Student> students) { for(Student st : students) addStudent(st);}
+	public void setStudent(ArrayList<Student> students)
+	{
+		for(int i = 0; i < students.size(); i++)
+		{
+			list_student.put(students.get(i).getStudentId(), students.get(i));
+		}
+	}
 
 	public HashMap<Integer ,Student> readStudentListFile(String path) {
 		/* copy students Information form file which connected with path
@@ -40,8 +46,8 @@ public class Lecture implements HandlingStudents{
 		if(!list_student.containsKey(studentId)) {
 			list_student.put(studentId, newStudent);
 			//info add by popup
-			/*******í•™ìƒì„ csvíŒŒì¼ì—ì„œë„ ì¶”ê°€******/
-			Writer a = new Writer();
+			/*******ÇĞ»ıÀ» csvÆÄÀÏ¿¡¼­µµ Ãß°¡******/
+			Writer a = new Writer(name + "_StudentInfo.csv");
 			a.studentWriter(newStudent);
 			/***********************************/
 			System.out.println("We add Student " + newStudent.getName() + "( " + String.valueOf(newStudent.getStudentId()) + " ) information.");
@@ -56,8 +62,8 @@ public class Lecture implements HandlingStudents{
 		if(list_student.containsKey(studentId)) {
 			Student temp = (Student)list_student.get(studentId);
 			list_student.remove(studentId);
-			/*******í•™ìƒì„ csvíŒŒì¼ì—ì„œë„ ì‚­ì œ******/
-			Delete a = new Delete();
+			/*******ÇĞ»ıÀ» csvÆÄÀÏ¿¡¼­µµ »èÁ¦******/
+			Delete a = new Delete(name + "_StudentInfo.csv");
 			a.studentDelete(studentId);
 			/***********************************/
 			
@@ -92,35 +98,20 @@ public class Lecture implements HandlingStudents{
 		return studentInfo;
 	}
 
-	/*
-	public Student searchStudent(String name) {
-		//read information from view
-
-		if(list_student.containsKey(studentId)) {
-			Student temp = (Student)list_student.get(studentId);
-
-			//info delete by popup
-			System.out.println("Student name: " + temp.getName());
-			System.out.println("Student Id: " + studentId);
-			System.out.println("Student e-mail: " + temp.getEmailAddress());
-			System.out.println("Student phone: " + temp.getPhoneNumber());
-
-			return temp;
-		}else {//when there is no student with input student Id
-			System.out.println("There is no such student with " + String.valueOf(studentId));
-			return null;
-		}
-	}
-	*/
 
 	public Student modifyStudentName(int studentId, String change) {
 		//read information from view
 
 		if(list_student.containsKey(studentId)) {
 			Student temp = (Student)list_student.get(studentId);
+			temp.setName(change);
+			// temp¿¡ ÀúÀåµÈ ÇĞ»ıÀÇ ÀÌ¸§À» ¹Ù²Ş
+			list_student.remove(studentId);
+			list_student.put(studentId, temp);
+			// students¿¡ ´Ù½Ã ÀúÀå
 
 			/*******Modify Student in CSV file******/
-			Modify a = new Modify(studentId);
+			Modify a = new Modify(studentId, name + "_StudentInfo.csv");
 			a.modifyName(change);
 			/***************************************/
 			return temp;
@@ -135,9 +126,14 @@ public class Lecture implements HandlingStudents{
 
 		if(list_student.containsKey(studentId)) {
 			Student temp = (Student)list_student.get(studentId);
+			temp.setStudentId(Integer.parseInt(change));
+			// temp¿¡ ÀúÀåµÈ ÇĞ»ıÀÇ ÇĞ¹øÀ» ¹Ù²Ş
+			list_student.remove(studentId);
+			list_student.put(Integer.parseInt(change), temp);
+			// students¿¡ ´Ù½Ã ÀúÀå
 
 			/*******Modify Student in CSV file******/
-			Modify a = new Modify(studentId);
+			Modify a = new Modify(studentId, name + "_StudentInfo.csv");
 			a.modifyStudentNumber(change);
 			/***************************************/
 
@@ -153,10 +149,14 @@ public class Lecture implements HandlingStudents{
 
 		if(list_student.containsKey(studentId)) {
 			Student temp = (Student)list_student.get(studentId);
-			System.out.println("Student phone: " + temp.getPhoneNumber());
+			temp.setEmailAddress(change);
+			// temp¿¡ ÀúÀåµÈ ÇĞ»ıÀÇ ¸ŞÀÏÀ» ¹Ù²Ş
+			list_student.remove(studentId);
+			list_student.put(studentId, temp);
+			// students¿¡ ´Ù½Ã ÀúÀå
 
 			/*******Modify Student in CSV file******/
-			Modify a = new Modify(studentId);
+			Modify a = new Modify(studentId, name + "_StudentInfo.csv");
 			a.modifyMail(change);
 			/***************************************/
 
@@ -171,10 +171,15 @@ public class Lecture implements HandlingStudents{
 		//read information from view
 
 		if(list_student.containsKey(studentId)) {
-			Student temp = (Student)list_student.get(studentId);System.out.println("Student phone: " + temp.getPhoneNumber());
+			Student temp = (Student)list_student.get(studentId);
+			temp.setPhoneNumber(change);
+			// temp¿¡ ÀúÀåµÈ ÇĞ»ıÀÇ ¹øÈ£¸¦ ¹Ù²Ş
+			list_student.remove(studentId);
+			list_student.put(studentId, temp);
+			// students¿¡ ´Ù½Ã ÀúÀå
 
 			/*******Modify Student in CSV file******/
-			Modify a = new Modify(studentId);
+			Modify a = new Modify(studentId, name + "_StudentInfo.csv");
 			a.modifyStudentNumber(change);
 			/***************************************/
 

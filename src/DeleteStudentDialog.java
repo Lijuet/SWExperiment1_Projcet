@@ -24,24 +24,18 @@ public class DeleteStudentDialog extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                studentNumber = Integer.parseInt(getStudentNumber.getText());
+                String temp = getStudentNumber.getText();
+                studentNumber = Integer.parseInt(temp);
                 textPane1.setText(lecture.searchStudent(studentNumber));
-            } // í•™ë²ˆê¹Œì§€ ë°›ì•„ì˜´. í•™ìƒì •ë³´ë¥¼ ì°½ì— ë„ì›Œì£¼ë©´ ë¨
+            } // ÇĞ¹ø±îÁö ¹Ş¾Æ¿È. ÇĞ»ıÁ¤º¸¸¦ Ã¢¿¡ ¶ç¿öÁÖ¸é µÊ
         });
 
         deleteButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if (studentNumber != -1)
-                {
-                    lecture.deleteStudent(studentNumber);
-                    // "ì‚­ì œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤" ì°½ ì¶œë ¥
-                }
-                else
-                {
-                    // "í•™ë²ˆì„ ì…ë ¥í•´ ì£¼ì„¸ìš”" ì°½ ì¶œë ¥
-                }
+                lecture.deleteStudent(studentNumber);
+                // "»èÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù" Ã¢ Ãâ·Â
             }
         });
 
@@ -53,7 +47,7 @@ public class DeleteStudentDialog extends JFrame {
     }
 
     public static void main(String[] args) {
-        ModifyStudentDialog dialog = new ModifyStudentDialog(null);
+        DeleteStudentDialog dialog = new DeleteStudentDialog(null);
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);

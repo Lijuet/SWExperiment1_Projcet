@@ -12,9 +12,9 @@ public class Modify {
     String FileName;
 
     public Modify(int studentNumber, String FileName) { this.studentNumber = studentNumber; this.FileName = FileName; }
-    public Modify(int studentNumber) { this.studentNumber = studentNumber; this.FileName = "System_StudentInfo.csv"; }
+    // public Modify(int studentNumber) { this.studentNumber = studentNumber; this.FileName = "System_StudentInfo.csv"; }
     public Modify(String name, String FileName) { this.name = name; this.FileName = FileName; }
-    public Modify(String name) { this.name = name; this.FileName = "System_StudentInfo.csv"; }
+    // public Modify(String name) { this.name = name; this.FileName = "System_StudentInfo.csv"; }
 
     public void modifyName(String afterName) // modify name
     {
@@ -22,39 +22,23 @@ public class Modify {
         try
         {
             StudentModify = new FileInputStream(FileName);
-            br = new BufferedReader(new InputStreamReader(StudentModify, "MS949"));
+            br = new BufferedReader(new InputStreamReader(StudentModify));
             String line;
-            if (studentNumber != -1) // 수정할 대상을 학번으로 받았을 경우
+            while ((line = br.readLine()) != null)
             {
-                while ((line = br.readLine()) != null)
+                String[] field = line.split(",");
+                if (!field[1].equals(String.valueOf(studentNumber)))
                 {
-                    String[] field = line.split(",");
-                    if (Integer.parseInt(field[1]) != studentNumber)
-                    {
-                        dummy += (line + "\r\n");
-                    }
-                    else {
-                        dummy += afterName + ",";
-                        dummy = dummy + field[1] + "," + field[2] + "," + field[3] + "\r\n";
-                    }
+                    dummy += (line + "\r\n");
+                }
+                else
+                {
+                    dummy += afterName + ",";
+                    dummy = dummy + field[1] + "," + field[2] + "," + field[3] + "\r\n";
                 }
             }
-            else // 수정할 대상을 이름으로 받았을 경우
-            {
-                while ((line = br.readLine()) != null)
-                {
-                    String[] field = line.split(",");
-                    if (!field[0].equals(name))
-                    {
-                        dummy += (line + "\r\n");
-                    }
-                    else {
-                        dummy += afterName + ",";
-                        dummy = dummy + field[1] + "," + field[2] + "," + field[3] + "\r\n";
-                    }
-                }
-            }
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileName), "euc-kr"));
+
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileName)));
             writer.write(dummy);
 
             writer.close();
@@ -65,47 +49,27 @@ public class Modify {
         }
     }
 
-    public void modifyMail(String afterMail) // 메일주소를 수정
+    public void modifyMail(String afterMail) // �����ּҸ� ����
     {
         String dummy = "";
         try
         {
             StudentModify = new FileInputStream(FileName);
-            br = new BufferedReader(new InputStreamReader(StudentModify, "MS949"));
+            br = new BufferedReader(new InputStreamReader(StudentModify));
             String line;
-            if (studentNumber != -1) // 수정할 대상을 학번으로 받았을 경우
+            while ((line = br.readLine()) != null)
             {
-                while ((line = br.readLine()) != null)
+                String[] field = line.split(",");
+                if (!field[1].equals(String.valueOf(studentNumber)))
                 {
-                    String[] field = line.split(",");
-                    if (Integer.parseInt(field[1]) != studentNumber)
-                    {
-                        dummy += (line + "\r\n");
-                    }
-                    else {
-                        dummy = dummy + field[0] + "," + field[1] + ",";
-                        dummy += afterMail + ",";
-                        dummy = dummy + field[3] + "\r\n";
-                    }
+                    dummy += (line + "\r\n");
+                }
+                else { dummy = dummy + field[0] + "," + field[1] + ",";
+                    dummy += afterMail + ",";
+                    dummy = dummy + field[3] + "\r\n";
                 }
             }
-            else // 수정할 대상을 이름으로 받았을 경우
-            {
-                while ((line = br.readLine()) != null)
-                {
-                    String[] field = line.split(",");
-                    if (!field[0].equals(name))
-                    {
-                        dummy += (line + "\r\n");
-                    }
-                    else {
-                        dummy = dummy + field[0] + "," + field[1] + ",";
-                        dummy += afterMail + ",";
-                        dummy = dummy + field[3] + "\r\n";
-                    }
-                }
-            }
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileName), "euc-kr"));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileName)));
             writer.write(dummy);
 
             writer.close();
@@ -116,45 +80,25 @@ public class Modify {
         }
     }
 
-    public void modifyPhoneNumber(String afterPhoneNumber) // 핸드폰번호 수정
+    public void modifyPhoneNumber(String afterPhoneNumber) // �ڵ�����ȣ ����
     {
         String dummy = "";
         try
         {
             StudentModify = new FileInputStream(FileName);
-            br = new BufferedReader(new InputStreamReader(StudentModify, "MS949"));
+            br = new BufferedReader(new InputStreamReader(StudentModify));
             String line;
-            if (studentNumber != -1) // 수정할 대상을 학번으로 받았을 경우
+
+            while ((line = br.readLine()) != null)
             {
-                while ((line = br.readLine()) != null)
+                String[] field = line.split(",");
+                if (!field[1].equals(String.valueOf(studentNumber)))
                 {
-                    String[] field = line.split(",");
-                    if (Integer.parseInt(field[1]) != studentNumber)
-                    {
-                        dummy += (line + "\r\n");
-                    }
-                    else {
-                        dummy = dummy + field[0] + "," + field[1] + "," + field[2] + ",";
-                        dummy = dummy + afterPhoneNumber + "\r\n";
-                    }
-                }
-            }
-            else // 수정할 대상을 이름으로 받았을 경우
-            {
-                while ((line = br.readLine()) != null)
-                {
-                    String[] field = line.split(",");
-                    if (!field[0].equals(name))
-                    {
-                        dummy += (line + "\r\n");
-                    }
-                    else {
-                        dummy = dummy + field[0] + "," + field[1] + "," + field[2] + ",";
-                        dummy = dummy + afterPhoneNumber + "\r\n";
-                    }
-                }
-            }
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileName), "euc-kr"));
+                    dummy += (line + "\r\n"); } else {
+                    dummy = dummy + field[0] + "," + field[1] + "," + field[2] + ",";
+                    dummy = dummy + afterPhoneNumber + "\r\n"; } }
+
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileName)));
             writer.write(dummy);
 
             writer.close();
@@ -164,47 +108,25 @@ public class Modify {
             e.printStackTrace();
         }
     }
-    public void modifyStudentNumber(String afterStudentNumber) // 학번을 수정
+    public void modifyStudentNumber(String afterStudentNumber) // �й��� ����
     {
         String dummy = "";
         try
         {
             StudentModify = new FileInputStream(FileName);
-            br = new BufferedReader(new InputStreamReader(StudentModify, "MS949"));
+            br = new BufferedReader(new InputStreamReader(StudentModify));
             String line;
-            if (studentNumber != -1) // 수정할 대상을 학번으로 받았을 경우
+            while ((line = br.readLine()) != null)
             {
-                while ((line = br.readLine()) != null)
+                String[] field = line.split(",");
+                if (!field[1].equals(String.valueOf(studentNumber)))
                 {
-                    String[] field = line.split(",");
-                    if (Integer.parseInt(field[1]) != studentNumber)
-                    {
-                        dummy += (line + "\r\n");
-                    }
-                    else {
-                        dummy = dummy + field[0] + ",";
-                        dummy = dummy + afterStudentNumber + ",";
-                        dummy = dummy + field[2] + "," + field[3] + "\r\n";
-                    }
-                }
-            }
-            else // 수정할 대상을 이름으로 받았을 경우
-            {
-                while ((line = br.readLine()) != null)
-                {
-                    String[] field = line.split(",");
-                    if (!field[0].equals(name))
-                    {
-                        dummy += (line + "\r\n");
-                    }
-                    else {
-                        dummy = dummy + field[0] + ",";
-                        dummy = dummy + afterStudentNumber + ",";
-                        dummy = dummy + field[2] + "," + field[3] + "\r\n";
-                    }
-                }
-            }
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileName), "euc-kr"));
+                    dummy += (line + "\r\n"); } else {
+                    dummy = dummy + field[0] + ",";
+                    dummy = dummy + afterStudentNumber + ",";
+                    dummy = dummy + field[2] + "," + field[3] + "\r\n"; } }
+
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileName)));
             writer.write(dummy);
 
             writer.close();

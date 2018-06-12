@@ -38,8 +38,7 @@ public class SearchStudentDialog extends JFrame {
             {
                 studentNumber = Integer.parseInt(getStudentNumber.getText());
                 textPane1.setText(lecture.searchStudent(studentNumber));
-            } // í•™ë²ˆê¹Œì§€ ë°›ì•„ì˜´. í•™ìƒì •ë³´ë¥¼ ì°½ì— ë„ì›Œì£¼ë©´ ë¨
-
+            } // ÇĞ¹ø±îÁö ¹Ş¾Æ¿È. ÇĞ»ıÁ¤º¸¸¦ Ã¢¿¡ ¶ç¿öÁÖ¸é µÊ
         });
 
         cancelButton.addActionListener(new ActionListener() {
@@ -50,7 +49,7 @@ public class SearchStudentDialog extends JFrame {
     }
 
     public static void main(String[] args) {
-        ModifyStudentDialog dialog = new ModifyStudentDialog(null);
+        SearchStudentDialog dialog = new SearchStudentDialog(null);
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
