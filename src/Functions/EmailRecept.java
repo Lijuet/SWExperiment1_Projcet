@@ -1,12 +1,7 @@
 package Functions;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.net.Socket;
-import java.util.ArrayList;
 
 public class EmailRecept extends JDialog{
     public JPanel panel;
@@ -14,16 +9,15 @@ public class EmailRecept extends JDialog{
     private JTextField nameInfo;
     private JTextField IdInfo;
     private JTextField textId;
-    private JTextField content;
-    private JButton cancelButton;
+    private JTextField jtext_message;
+    private JButton btnCancel;
     private String message;
 
     EmailRecept(String message){
         setContentPane(panel);
         setModal(true);
-        getRootPane().setDefaultButton(cancelButton);
+        getRootPane().setDefaultButton(btnCancel);
         this.message = message;
-
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -40,6 +34,7 @@ public class EmailRecept extends JDialog{
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
-        content.setText(message);
+        //initialize the dialog
+        jtext_message.setText(message);
     }
 }

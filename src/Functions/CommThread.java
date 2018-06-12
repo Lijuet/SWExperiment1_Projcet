@@ -1,6 +1,7 @@
 package Functions;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -18,19 +19,17 @@ public class CommThread extends Thread {
             DataInputStream dis = new DataInputStream (soc.getInputStream());
 
             System.out.println("You got a message!");
-            String message = dis.readUTF();
+            String message = dis.readUTF();//TODO 소켓으로 클래스 못넘기나?
             System.out.println(message);
 
-            AcceptEmailDialog dialog = new AcceptEmailDialog(message);
-            dialog.pack();
-            dialog.setVisible(true);
-            dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            //Pop up the frame to check whether user will check it or not
+            EventQueue.invokeLater(new Runnable() {
+                public void run() { new AcceptEmailDialog(message); }
+            });
 
-            System.out.println("sdfsd");
             dis.close();
             soc.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

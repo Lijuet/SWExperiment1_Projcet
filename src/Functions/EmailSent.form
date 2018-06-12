@@ -30,7 +30,7 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="53724" class="javax.swing.JTextField" binding="id">
+              <component id="53724" class="javax.swing.JTextField" binding="jtext_id">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -75,7 +75,7 @@
                   <text value="name"/>
                 </properties>
               </component>
-              <component id="911c9" class="javax.swing.JTextField" binding="name">
+              <component id="911c9" class="javax.swing.JTextField" binding="jtext_name">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -109,7 +109,7 @@
               <text value="content"/>
             </properties>
           </component>
-          <component id="acd7f" class="javax.swing.JTextField" binding="content">
+          <component id="acd7f" class="javax.swing.JTextField" binding="jtext_message">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -162,6 +162,7 @@
               </grid>
             </constraints>
             <properties>
+              <editable value="false"/>
               <font name="Bookman Old Style" size="26"/>
               <text value="Send E-mail"/>
             </properties>
