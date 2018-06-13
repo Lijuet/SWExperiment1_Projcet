@@ -1,14 +1,14 @@
-name,student number,email,phone number,6/13
-박경연,2017312971,contestpark@naver.com,01029785410,O
-가나다,2017310000,aaa@skku.edu,01000000000,O
-라마바,2017310001,bbb@skku.edu,01011111111,O
-사아,2017310002,ccc@skku.edu,01022222222,O
-자차카,2017310003,ddd@skku.edu,01033333333,X
-타파하,2017310004,eee@skku.edu,01044444444,X
-가나다,2017310005,fff@skku.edu,01055555555,X
-라마바,2017312311,ggg@skku.edu,01066666666,O
-사아,2017310007,hhh@skku.edu,01077777777,O
-자차카,2018321321,iii@skku.edu,01088888888,X
-타파하,2017310009,jjj@skku.edu,01099999999,X
-박소영,2017316745,null,null,O
-채세이,01020476482,cotpdl1@gmail.com,01020476482,O
+name,student number,email,phone number,6/13,6/15
+박경연,2017312971,contestpark@naver.com,01029785410,O,X
+가나다,2017310000,aaa@skku.edu,01000000000,O,O
+라마바,2017310001,bbb@skku.edu,01011111111,O,O
+사아,2017310002,ccc@skku.edu,01022222222,O,O
+자차카,2017310003,ddd@skku.edu,01033333333,O,O
+타파하,2017310004,eee@skku.edu,01044444444,O,O
+가나다,2017310005,fff@skku.edu,01055555555,O,O
+라마바,2017312311,ggg@skku.edu,01066666666,O,O
+사아,2017310007,hhh@skku.edu,01077777777,O,O
+자차카,2018321321,iii@skku.edu,01088888888,O,O
+타파하,2017310009,jjj@skku.edu,01099999999,O,O
+김민준,2017311264,null,null,O,O
+박소영,2017316745,null,null,O,O

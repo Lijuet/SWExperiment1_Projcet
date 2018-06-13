@@ -58,9 +58,9 @@ public class Lecture implements HandlingStudents{
 			Writer a = new Writer(name + "_StudentInfo.csv");
 			a.studentWriter(newStudent);
 			/***********************************/
-			System.out.println("We add Student " + newStudent.getName() + "( " + String.valueOf(newStudent.getStudentId()) + " ) information.");
+			// System.out.println("We add Student " + newStudent.getName() + "( " + String.valueOf(newStudent.getStudentId()) + " ) information.");
 		}else {//when there is already student with input student Id
-			System.out.println("There is already student with " + String.valueOf(newStudent.getStudentId()));
+			// System.out.println("There is already student with " + String.valueOf(newStudent.getStudentId()));
 		}
 	}
 	

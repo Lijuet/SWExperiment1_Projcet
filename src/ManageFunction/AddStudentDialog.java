@@ -60,7 +60,7 @@ public class AddStudentDialog extends JDialog {
                     } else {
                         int result = JOptionPane.showConfirmDialog(null, "추가하시겠습니까?", "Add", 0);
                         if (result == JOptionPane.OK_OPTION) {
-                            JOptionPane.showMessageDialog(null, "추가가 완료되었습니다"); // "????? ??????????" ? ???
+                            JOptionPane.showMessageDialog(null, "추가가 완료되었습니다");
                             Student newStudent = new Student(name, Email, phoneNumber, studentID);
                             lecture.addStudent(newStudent);
                         }
