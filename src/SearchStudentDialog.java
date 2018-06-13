@@ -39,7 +39,7 @@ public class SearchStudentDialog extends JFrame {
                 String input = getStudentNumber.getText();
                 if (input.equals(""))
                 {
-                    JOptionPane.showMessageDialog(null, "?й??? ????? ?????");
+                    JOptionPane.showMessageDialog(null, "학번을 입력해 주세요");
                 }
                 else
                 {
@@ -47,10 +47,10 @@ public class SearchStudentDialog extends JFrame {
                         studentNumber = Integer.parseInt(input);
                         textPane1.setText(lecture.searchStudent(studentNumber));
                     } catch (NumberFormatException a) {
-                        JOptionPane.showMessageDialog(null, "?й??? ????? ????? ?????");
+                        JOptionPane.showMessageDialog(null, "학번에 숫자를 입력해 주세요");
                     }
                 }
-            } // ?й????? ????. ?л??????? ??? ?????? ??
+            }
         });
 
         cancelButton.addActionListener(new ActionListener() {

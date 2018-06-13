@@ -15,6 +15,7 @@ public class HandlingStudentsFrame extends JFrame {
     private JButton btnDeleteStudentInfo;
     private JButton btnSearchStudentInfo;
     private JPanel panel;
+    private JButton attendanceButton;
 
     /**
      * Launch the application.
@@ -96,6 +97,16 @@ public class HandlingStudentsFrame extends JFrame {
                 dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 // TODO Auto-generated method stub
                 //lecture.deleteStudent(Id);
+            }
+        });
+
+        attendanceButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AttendanceDialog dialog = new AttendanceDialog(lecture);
+                dialog.pack();
+                dialog.setVisible(true);
+                dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             }
         });
 
