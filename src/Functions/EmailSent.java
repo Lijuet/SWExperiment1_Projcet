@@ -13,10 +13,7 @@ import java.util.ArrayList;
 
 public class EmailSent extends JFrame {
     private JTextArea message;
-    private JTextField contentTextField;
-    private JTextField jtextAlarm;
-    private JTextField nameTextField;
-    private JTextField idTextField;
+    private JTextField messageTextField;
     private JTextField jtext_id;
     private JTextField jtext_name;
     private JButton btnSent;
@@ -42,15 +39,23 @@ public class EmailSent extends JFrame {
         btnSent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Email email = new Email();
-                email.setName(jtext_name.getText());
-                email.setId(Integer.parseInt(jtext_id.getText()));
+                try {
+                    Email email = new Email();
+                    email.setName(jtext_name.getText());
+                    email.setId(Integer.parseInt(jtext_id.getText()));
 
-                ArrayList<String> contents = new ArrayList<>();
-                for (String line : message.getText().split("\\n")) contents.add(line);
-                email.setMessage(contents);
+                    ArrayList<String> contents = new ArrayList<>();
+                    for (String line : message.getText().split("\\n")) contents.add(line);
+                    email.setMessage(contents);
 
-                new mailSending(email).start();
+                    if (email.getName().equals("") || email.getMessage().equals("")) {
+                        JOptionPane.showMessageDialog(null, "모든 정보를 입력하십시오.");
+                    } else {
+                        new mailSending(email).start();
+                    }
+                }catch (NumberFormatException a) {
+                    JOptionPane.showMessageDialog(null, "학번을 올바른 형식으로 입력하십시오");
+                }
             }
         });
         btnCancel.addActionListener(new ActionListener() {

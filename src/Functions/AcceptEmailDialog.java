@@ -15,7 +15,7 @@ public class AcceptEmailDialog extends JFrame{
         getRootPane().setDefaultButton(btnCancel);
 
         this.email = email;
-        jtextAlarm.setText("Got a message from " + email.getName());
+        jtextAlarm.setText("from " + email.getName());
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -33,7 +33,7 @@ public class AcceptEmailDialog extends JFrame{
 
         btnCancel.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { dispose(); }//TODO dispose ì œëŒ€ë¡œ ì‘ë™í•˜ëŠ”ê°€?
+            public void actionPerformed(ActionEvent e) { dispose(); }//TODO dispose Á¦´ë·Î ÀÛµ¿ÇÏ´Â°¡?
         });
 
         btnOK.addActionListener(new ActionListener() {

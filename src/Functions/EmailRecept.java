@@ -5,10 +5,8 @@ import java.awt.event.*;
 
 public class EmailRecept extends JDialog{
     public JPanel panel;
-    private JTextField jtextName;
     private JTextField nameInfo;
     private JTextField IdInfo;
-    private JTextField jtextId;
     private JTextArea message;
     private JButton btnCancel;
 
