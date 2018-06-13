@@ -1,5 +1,6 @@
 package ModifyFiles;
 
+import Components.Professor;
 import Components.Student;
 import java.io.*;
 import java.util.ArrayList;
@@ -13,11 +14,55 @@ public class Reader {
     FileInputStream Lecture;
     BufferedReader br2 = null;
 
+    FileInputStream Lecture2;
+    BufferedReader br3 = null;
+
     public Reader (String Filename)
     {
         this.FileName = Filename;
     }
     // public Reader() { this.FileName = "System_StudentInfo.csv"; }
+
+    public Professor professorReader(String lecture)
+    {
+        Professor professorTemp = new Professor(null, null, null);
+        String[] field = null;
+        try {
+            Lecture2 = new FileInputStream(FileName);
+            br3 = new BufferedReader(new InputStreamReader(Lecture2));
+            String line;
+            while ((line = br3.readLine()) != null)
+            {
+                field = line.split(",");
+
+                if (field[0].trim().equals(lecture))
+                {
+                    Professor professorInfo = new Professor(field[1].trim(), field[2].trim(), field[3].trim());
+                    professorTemp = professorInfo;
+                    break;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br3 != null) {
+                try {
+                    br3.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (Lecture2 != null) try {
+                Lecture2.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return professorTemp;
+    }
+
 
     public ArrayList<Student> studentReader() {
         String[] field = null;

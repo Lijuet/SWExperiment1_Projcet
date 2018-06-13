@@ -1,4 +1,3 @@
-import Components.HandlingStudents;
 import Components.Lecture;
 import Components.Student;
 import ModifyFiles.Reader;
@@ -12,7 +11,8 @@ import java.util.*;
 public class SelectLectureDialog extends JFrame {
     private JPanel content;
     private JComboBox selectLecture;
-    private JButton Select;
+    private JButton Student;
+    private JButton Professor;
     int numOfLecture = 0;
     String[] lectureList = null;
 
@@ -40,7 +40,7 @@ public class SelectLectureDialog extends JFrame {
         selectLecture.setModel(model);
         /**************************************************************/
 
-        Select.addActionListener(new ActionListener() {
+        Student.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
             {
@@ -65,5 +65,25 @@ public class SelectLectureDialog extends JFrame {
                 // 2. System_StudentInfo 이름 받기 오류
             }
         });
+
+        Professor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int userSelectLecture = selectLecture.getSelectedIndex();
+                Lecture lecture = new Lecture(lectureList[userSelectLecture]);
+                lecture.setProfessor(lectureList[userSelectLecture]);
+
+                professorDialog dialog = new professorDialog(lecture.getProfessor());
+                dialog.pack();
+                dialog.setVisible(true);
+                dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            }
+        });
+
+
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }

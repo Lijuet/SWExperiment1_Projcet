@@ -2,25 +2,33 @@ package Components;
 
 import ModifyFiles.Delete;
 import ModifyFiles.Modify;
+import ModifyFiles.Reader;
 import ModifyFiles.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Lecture implements HandlingStudents{
 	protected String name;//name of Lecture
-	protected ArrayList<Professor> list_professor;//list of professor
+	protected Professor professor;//list of professor
 	protected HashMap<Integer ,Student> list_student;//hashmap<studentId, Student object>
 	
 	//constructor
 	public Lecture(String name){ 
 		this.name = name.trim();
-		list_professor = new ArrayList<>();
+		professor = new Professor(null, null, null);
 		list_student = new HashMap<>();	
 	}
 
 	//getter and setter of fields
 	public String getName() { return name; }
 	public void setName(String name) { this.name = name; }
+	public Professor getProfessor() { return professor; }
+
+	public void setProfessor(String lectureName)
+	{
+		Reader a = new Reader("Lecture.csv");
+		professor = a.professorReader(lectureName);
+	}
 
 	public void setStudent(ArrayList<Student> students)
 	{
