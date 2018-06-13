@@ -6,12 +6,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class EmailSent extends JFrame {
-    private String message;
-    private JTextField jtext_message;
+    private JTextArea message;
+    private JTextField contentTextField;
+    private JTextField jtextAlarm;
+    private JTextField nameTextField;
+    private JTextField idTextField;
     private JTextField jtext_id;
     private JTextField jtext_name;
     private JButton btnSent;
@@ -40,42 +45,17 @@ public class EmailSent extends JFrame {
                 Email email = new Email();
                 email.setName(jtext_name.getText());
                 email.setId(Integer.parseInt(jtext_id.getText()));
-                //TODO textfield에서 가능한 string array로 넘기기
+
+                ArrayList<String> contents = new ArrayList<>();
+                for (String line : message.getText().split("\\n")) contents.add(line);
+                email.setMessage(contents);
+
                 new mailSending(email).start();
             }
         });
         btnCancel.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { dispose(); }
+            public void actionPerformed(ActionEvent e) { System.exit(1); }
         });
-    }
-}
-
-class mailSending extends Thread {
-    int id;
-    String name;
-    String message;
-
-    public mailSending(Email email){
-        id = email.getId();
-        name = email.getName();
-        message = email.getMessage();
-    }
-
-    public void run () {
-        try {
-            Socket soc = new Socket("localhost", 5000);
-
-            OutputStream os = soc.getOutputStream ();
-            DataOutputStream dos = new DataOutputStream (os);
-
-            dos.writeUTF ("[ " + name + "( " + id + " ) ] : " + message);
-            System.out.println ("Message is successfully sent!");
-
-            dos.close();
-            soc.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

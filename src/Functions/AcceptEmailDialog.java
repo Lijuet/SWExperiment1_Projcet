@@ -7,20 +7,18 @@ public class AcceptEmailDialog extends JFrame{
     private JPanel panel;
     private JButton btnOK;
     private JButton btnCancel;
-    private String message;
+    private Email email;
+    private JTextField jtextAlarm;
 
-    public AcceptEmailDialog(String message){
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        pack();
-        setVisible(true);
+    public AcceptEmailDialog(Email email){
         setContentPane(panel);
         getRootPane().setDefaultButton(btnCancel);
-        //TODO 창 크기를 message를 적당히 나눌만큼의 크기로 만들 것
 
-        this.message = message;
+        this.email = email;
+        jtextAlarm.setText("Got a message from " + email.getName());
 
         // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 dispose();
@@ -41,7 +39,8 @@ public class AcceptEmailDialog extends JFrame{
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EmailRecept dialog = new EmailRecept(message);
+                EmailRecept dialog = new EmailRecept(email);
+                dialog.pack();
                 dialog.setVisible(true);
                 dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             }

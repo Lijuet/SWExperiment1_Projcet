@@ -12,7 +12,6 @@ class Server {
 
     public static void main(String[] args) {
         ServerSocket ss = null;
-        int id = 0;
         try {
             ss = new ServerSocket(5000);
         } catch (IOException e) {

@@ -5,19 +5,17 @@ import java.awt.event.*;
 
 public class EmailRecept extends JDialog{
     public JPanel panel;
-    private JTextField textName;
+    private JTextField jtextName;
     private JTextField nameInfo;
     private JTextField IdInfo;
-    private JTextField textId;
-    private JTextField jtext_message;
+    private JTextField jtextId;
+    private JTextArea message;
     private JButton btnCancel;
-    private String message;
 
-    EmailRecept(String message){
+    EmailRecept(Email email){
         setContentPane(panel);
         setModal(true);
         getRootPane().setDefaultButton(btnCancel);
-        this.message = message;
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -35,6 +33,15 @@ public class EmailRecept extends JDialog{
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
         //initialize the dialog
-        jtext_message.setText(message);
+        message.setText(email.getMessage());
+        IdInfo.setText(String.valueOf(email.getId()));
+        nameInfo.setText(email.getName());
+
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
     }
 }
