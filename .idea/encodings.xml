@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="x-windows-949">
-    <file url="file://$PROJECT_DIR$/Experiment_StudentInfo.csv" charset="x-windows-949" />
-    <file url="file://$PROJECT_DIR$/System_StudentInfo.csv" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/AddStudentDialog.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/Components/Lecture.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/DeleteStudentDialog.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/Functions/AcceptEmailDialog.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/Functions/EmailSent.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/HandlingStudentsFrame.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/Main.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/ModifyFiles/Modify.java" charset="x-windows-949" />

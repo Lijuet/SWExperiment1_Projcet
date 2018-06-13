@@ -3,23 +3,22 @@ package Functions;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class AcceptEmailDialog extends JDialog{
-    private JPanel panel1;
-    private JButton okButton;
-    private JButton noButton;
-    private JTextField youGotMessageDoTextField;
-    private String message;
+public class AcceptEmailDialog extends JFrame{
+    private JPanel panel;
+    private JButton btnOK;
+    private JButton btnCancel;
+    private Email email;
+    private JTextField jtextAlarm;
 
-    public AcceptEmailDialog(String message){
-        setContentPane(panel1);
-        setModal(true);
-        getRootPane().setDefaultButton(noButton);
+    public AcceptEmailDialog(Email email){
+        setContentPane(panel);
+        getRootPane().setDefaultButton(btnCancel);
 
-        this.message = message;
-
+        this.email = email;
+        jtextAlarm.setText("from " + email.getName());
 
         // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 dispose();
@@ -27,24 +26,20 @@ public class AcceptEmailDialog extends JDialog{
         });
 
         // call onCancel() on ESCAPE
-        panel1.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
+        panel.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) { dispose(); }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
 
-        noButton.addActionListener(new ActionListener() {
+        btnCancel.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
+            public void actionPerformed(ActionEvent e) { dispose(); }//TODO dispose 제대로 작동하는가?
         });
 
-        okButton.addActionListener(new ActionListener() {
+        btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EmailRecept dialog = new EmailRecept(message);
+                EmailRecept dialog = new EmailRecept(email);
                 dialog.pack();
                 dialog.setVisible(true);
                 dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
