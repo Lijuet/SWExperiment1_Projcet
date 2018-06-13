@@ -1,9 +1,9 @@
 package Components;
 
-import ModifyFiles.Delete;
-import ModifyFiles.Modify;
-import ModifyFiles.Reader;
-import ModifyFiles.Writer;
+import ManageFunction.Delete;
+import ManageFunction.Modify;
+import ManageFunction.Reader;
+import ManageFunction.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,12 +25,8 @@ public class Lecture implements HandlingStudents{
 	public void setName(String name) { this.name = name; }
 	public Professor getProfessor() { return professor; }
 
-	public int getNumOfStudent() {
-		return numOfStudent;
-	}
-
-	public void setProfessor(String lectureName)
-	{
+	//read Lecture.csv and find the professor according to class
+	public void setProfessor(String lectureName)	{
 		Reader a = new Reader("Lecture.csv");
 		professor = a.professorReader(lectureName);
 	}
@@ -53,14 +49,12 @@ public class Lecture implements HandlingStudents{
 	}
 	
 	public void addStudent(Student newStudent) {
-		//read information from view 
-		
+		//read information from frame
 		Integer studentId = newStudent.getStudentId();
 		
-		if(!list_student.containsKey(studentId)) {
+		if(!list_student.containsKey(studentId)) {//there is no student with same student id
 			list_student.put(studentId, newStudent);
-			//info add by popup
-			/*******학생을 csv파일에서도 추가******/
+			/*******Add Student in CSV file******/
 			Writer a = new Writer(name + "_StudentInfo.csv");
 			a.studentWriter(newStudent);
 			/***********************************/
@@ -71,16 +65,14 @@ public class Lecture implements HandlingStudents{
 	}
 	
 	public void deleteStudent(int studentId) {
-		//read information from view 
-		
-		if(list_student.containsKey(studentId)) {
+		//read information from view
+		if(list_student.containsKey(studentId)) {//there is no student with same student id
 			Student temp = (Student)list_student.get(studentId);
 			list_student.remove(studentId);
-			/*******학생을 csv파일에서도 삭제******/
+			/*******Delete Student in CSV file******/
 			Delete a = new Delete(name + "_StudentInfo.csv");
 			a.studentDelete(studentId);
 			/***********************************/
-			
 			//info delete by popup
 			System.out.println("We delete Student " + temp.getName() +
 							   "( " + String.valueOf(studentId) + " ) inforamtion.");
@@ -92,13 +84,10 @@ public class Lecture implements HandlingStudents{
 	public String searchStudent(int studentId) {
 		//read information from view
 		String studentInfo = null;
-
-		if(list_student.containsKey(studentId)) {
+		if(list_student.containsKey(studentId)) {//there is no student with same student id
 			Student temp = (Student)list_student.get(studentId);
-
 			studentInfo = "Student name: " + temp.getName() + "\n" + "Student Id: " + studentId + "\n" + "Email: " + temp.getEmailAddress()
 					+ "\n" + "Phone number: " + temp.getPhoneNumber();
-
 			return studentInfo;
 		}else {//when there is no student with input student Id
 			// System.out.println("There is no such student with " + String.valueOf(studentId))
@@ -107,8 +96,7 @@ public class Lecture implements HandlingStudents{
 		return studentInfo;
 	}
 
-	public int existStudent(int studentId)
-	{
+	public int existStudent(int studentId)	{
 		if(list_student.containsKey(studentId)) { return 1; }
 		else { return 0; }
 	}
@@ -116,15 +104,12 @@ public class Lecture implements HandlingStudents{
 
 	public Student modifyStudentName(int studentId, String change) {
 		//read information from view
-
-		if(list_student.containsKey(studentId)) {
+		if(list_student.containsKey(studentId)) {//there is no student with same student id
 			Student temp = (Student)list_student.get(studentId);
-			temp.setName(change);
-			// temp에 저장된 학생의 이름을 바꿈
+			temp.setName(change);// modify temp's name
 			list_student.remove(studentId);
 			list_student.put(studentId, temp);
-			// students에 다시 저장
-
+			// store modified student information
 			/*******Modify Student in CSV file******/
 			Modify a = new Modify(studentId, name + "_StudentInfo.csv");
 			a.modifyName(change);
@@ -138,15 +123,12 @@ public class Lecture implements HandlingStudents{
 
 	public Student modifyStudentID(int studentId, String change) {
 		//read information from view
-
 		if(list_student.containsKey(studentId)) {
 			Student temp = (Student)list_student.get(studentId);
-			temp.setStudentId(Integer.parseInt(change));
-			// temp에 저장된 학생의 학번을 바꿈
+			temp.setStudentId(Integer.parseInt(change));// modify temp's Id
 			list_student.remove(studentId);
 			list_student.put(Integer.parseInt(change), temp);
-			// students에 다시 저장
-
+			// store modified student information
 			/*******Modify Student in CSV file******/
 			Modify a = new Modify(studentId, name + "_StudentInfo.csv");
 			a.modifyStudentNumber(change);
@@ -164,12 +146,10 @@ public class Lecture implements HandlingStudents{
 
 		if(list_student.containsKey(studentId)) {
 			Student temp = (Student)list_student.get(studentId);
-			temp.setEmailAddress(change);
-			// temp에 저장된 학생의 메일을 바꿈
+			temp.setEmailAddress(change);// modify temp's emailAddress
 			list_student.remove(studentId);
 			list_student.put(studentId, temp);
-			// students에 다시 저장
-
+			// store modified student information
 			/*******Modify Student in CSV file******/
 			Modify a = new Modify(studentId, name + "_StudentInfo.csv");
 			a.modifyMail(change);
@@ -187,12 +167,10 @@ public class Lecture implements HandlingStudents{
 
 		if(list_student.containsKey(studentId)) {
 			Student temp = (Student)list_student.get(studentId);
-			temp.setPhoneNumber(change);
-			// temp에 저장된 학생의 번호를 바꿈
+			temp.setPhoneNumber(change);// modify temp's phone number
 			list_student.remove(studentId);
 			list_student.put(studentId, temp);
-			// students에 다시 저장
-
+			// store modified student information
 			/*******Modify Student in CSV file******/
 			Modify a = new Modify(studentId, name + "_StudentInfo.csv");
 			a.modifyStudentNumber(change);
