@@ -20,9 +20,14 @@ public class Lecture implements HandlingStudents{
 	}
 
 	//getter and setter of fields
+	public int numOfStudent;
 	public String getName() { return name; }
 	public void setName(String name) { this.name = name; }
 	public Professor getProfessor() { return professor; }
+
+	public int getNumOfStudent() {
+		return numOfStudent;
+	}
 
 	public void setProfessor(String lectureName)
 	{
@@ -36,6 +41,7 @@ public class Lecture implements HandlingStudents{
 		{
 			list_student.put(students.get(i).getStudentId(), students.get(i));
 		}
+		numOfStudent = students.size();
 	}
 
 	public HashMap<Integer ,Student> readStudentListFile(String path) {

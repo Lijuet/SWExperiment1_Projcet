@@ -23,6 +23,14 @@ public class Reader {
     }
     // public Reader() { this.FileName = "System_StudentInfo.csv"; }
 
+    public ArrayList<String> attendanceTemp = new ArrayList<>();
+
+    public String[] getStudentList() {
+        String[] temp = new String[attendanceTemp.size()];
+        temp = attendanceTemp.toArray(temp);
+        return temp;
+    }
+
     public Professor professorReader(String lecture)
     {
         Professor professorTemp = new Professor(null, null, null);
@@ -78,6 +86,7 @@ public class Reader {
                 field = line.split(",");
                 Student temp = new Student(field[0], field[2], field[3], Integer.parseInt(field[1]));
                 Students.add(temp);
+                attendanceTemp.add(field[0] + "/" + field[1]);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
