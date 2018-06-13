@@ -1,4 +1,4 @@
-package EmailFunction;
+package MessageFunction;
 
 import java.io.Serializable;
 import java.util.ArrayList;

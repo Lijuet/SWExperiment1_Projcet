@@ -1,4 +1,4 @@
-package EmailFunction;
+package MessageFunction;
 
 import javax.swing.*;
 import java.awt.*;

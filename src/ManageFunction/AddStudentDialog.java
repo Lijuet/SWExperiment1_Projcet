@@ -56,18 +56,18 @@ public class AddStudentDialog extends JDialog {
                 try {
                     studentID = Integer.parseInt(temp);
                     if (name.equals("") || studentID == -1 || Email.equals("") || phoneNumber.equals("")) {
-                        JOptionPane.showMessageDialog(null, "??? ?????? ????? ?????");
+                        JOptionPane.showMessageDialog(null, "빈칸을 모두 채워주세요");
                     } else {
-                        int result = JOptionPane.showConfirmDialog(null, "?????ð??????", "Add", 0);
+                        int result = JOptionPane.showConfirmDialog(null, "추가하시겠습니까?", "Add", 0);
                         if (result == JOptionPane.OK_OPTION) {
-                            JOptionPane.showMessageDialog(null, "????? ??????????"); // "????? ??????????" ? ???
+                            JOptionPane.showMessageDialog(null, "추가가 완료되었습니다"); // "????? ??????????" ? ???
                             Student newStudent = new Student(name, Email, phoneNumber, studentID);
                             lecture.addStudent(newStudent);
                         }
                     }
                 }
                 catch (NumberFormatException a){
-                    JOptionPane.showMessageDialog(null, "?й??? ????? ????? ?????");
+                    JOptionPane.showMessageDialog(null, "학번에 숫자를 입력해주세요");
                 }
             }
         });

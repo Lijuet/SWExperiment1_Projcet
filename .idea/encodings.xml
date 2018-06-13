@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="x-windows-949">
+    <file url="file://$PROJECT_DIR$/SystemProgramming_StudentInfo.csv" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/Components/Lecture.java" charset="x-windows-949" />
-    <file url="file://$PROJECT_DIR$/src/EmailFunction/AcceptEmailDialog.java" charset="x-windows-949" />
-    <file url="file://$PROJECT_DIR$/src/EmailFunction/EmailSent.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/Main.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/ManageFunction/AddStudentDialog.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/ManageFunction/DeleteStudentDialog.java" charset="x-windows-949" />
@@ -12,6 +11,8 @@
     <file url="file://$PROJECT_DIR$/src/ManageFunction/ModifyStudentDialog.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/ManageFunction/SearchStudentDialog.java" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/src/ManageFunction/SelectLectureDialog.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/MessageFunction/AcceptEmailDialog.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/src/MessageFunction/EmailSent.java" charset="x-windows-949" />
     <file url="PROJECT" charset="x-windows-949" />
   </component>
 </project>

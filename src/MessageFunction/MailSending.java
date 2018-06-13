@@ -1,4 +1,4 @@
-package EmailFunction;
+package MessageFunction;
 
 
 import java.io.IOException;
@@ -13,7 +13,7 @@ class MailSending extends Thread {
 
     public void run () {
         try {
-            Socket soc = new Socket("192.168.79.1", 5000);
+            Socket soc = new Socket("localhost", 5000);
 
             OutputStream os = soc.getOutputStream ();
             ObjectOutputStream dos = new ObjectOutputStream (os);
