@@ -20,11 +20,6 @@ public class ModifyStudentDialog extends JDialog{
         setModal(true);
         getRootPane().setDefaultButton(cancelButton);
 
-        changeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
 
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -51,38 +46,61 @@ public class ModifyStudentDialog extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                studentNumber = Integer.parseInt(textField1.getText());
-                lecture.searchStudent(studentNumber);
-                textPane1.setText(lecture.searchStudent(studentNumber));
-            }
+                String input = textField1.getText();
+                if (input.equals(""))
+                {
+                    JOptionPane.showMessageDialog(null, "ÇĞ¹øÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+                }
+                else
+                {
+                    try {
+                        studentNumber = Integer.parseInt(input);
+                        textPane1.setText(lecture.searchStudent(studentNumber));
+                    } catch (NumberFormatException a) {
+                        JOptionPane.showMessageDialog(null, "ÇĞ¹ø¿¡ ¼ıÀÚ¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+                    }
+                }
+            } // ÇĞ¹ø±îÁö ¹Ş¾Æ¿È. ÇĞ»ıÁ¤º¸¸¦ Ã¢¿¡ ¶ç¿öÁÖ¸é µÊ
         });
 
-        changeButton.addActionListener(new ActionListener() { // lectureì—ì„œ student numberì˜ í•™ìƒì´ ì¡´ì¬í• ë•Œ
+        changeButton.addActionListener(new ActionListener() { // lecture¿¡¼­ student numberÀÇ ÇĞ»ıÀÌ Á¸ÀçÇÒ¶§
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text2 = textField2.getText();
-                /**if elseë¡œ studentê°€ ì¡´ì¬í• ë–„ ì•ˆí• ë•Œ ë‚˜ëˆ„ê¸°**/
-                /**************decide what to change*************/
-                if (whatToChange.getSelectedIndex() == 0) // Name
-                {
-                    lecture.modifyStudentName(studentNumber, text2);
-                }
+                /**if else·Î student°¡ Á¸ÀçÇÒ‹š ¾ÈÇÒ¶§ ³ª´©±â**/
+                if (lecture.existStudent(studentNumber) == 1 && !text2.equals("")) {
+                    int temp = whatToChange.getSelectedIndex();
 
-                else if (whatToChange.getSelectedIndex() == 1) // Student number
-                {
-                    lecture.modifyStudentID(studentNumber, text2);
-                }
+                    int result = JOptionPane.showConfirmDialog(null, "Á¤¸» ¼öÁ¤ÇÏ½Ã°Ú½À´Ï±î?", "Modify", 0);
+                    if (result == JOptionPane.OK_OPTION) {
+                        /*****************decide what to change****************/
+                        if (temp == 0) // Name
+                        {
+                            lecture.modifyStudentName(studentNumber, text2);
+                            JOptionPane.showMessageDialog(null, "¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù"); // "¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù" Ã¢ Ãâ·Â
+                        } else if (temp == 1) // Student number
+                        {
+                            try {
+                                Integer.parseInt(text2);
+                                lecture.modifyStudentID(studentNumber, text2);
+                                JOptionPane.showMessageDialog(null, "¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù"); // "¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù" Ã¢ Ãâ·Â
+                            } catch (NumberFormatException a) {
+                                JOptionPane.showMessageDialog(null, "ÇĞ¹ø¿¡ ¼ıÀÚ¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+                            }
 
-                else if (whatToChange.getSelectedIndex() == 2) // Email
-                {
-                    lecture.modifyStudentEmail(studentNumber, text2);
-                }
+                        } else if (temp == 2) // Email
+                        {
+                            lecture.modifyStudentEmail(studentNumber, text2);
+                            JOptionPane.showMessageDialog(null, "¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù"); // "¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù" Ã¢ Ãâ·Â
+                        } else if (temp == 3) // Phone number
+                        {
+                            lecture.modifyStudentNumber(studentNumber, text2);
+                            JOptionPane.showMessageDialog(null, "¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù"); // "¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù" Ã¢ Ãâ·Â
+                        }
+                        /******************************************************/
+                    }
 
-                else if (whatToChange.getSelectedIndex() == 3) // Phone number
-                {
-                    lecture.modifyStudentNumber(studentNumber, text2);
                 }
-                /************************************************/
             }
         });
     }

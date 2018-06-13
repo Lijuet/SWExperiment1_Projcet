@@ -32,7 +32,7 @@
               <background color="-1"/>
               <font name="Bookman Old Style" size="26" style="1"/>
               <foreground color="-11315366"/>
-              <text value="Modify Student"/>
+              <text value="Edit Student"/>
             </properties>
           </component>
         </children>

@@ -36,10 +36,21 @@ public class SearchStudentDialog extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                studentNumber = Integer.parseInt(getStudentNumber.getText());
-                textPane1.setText(lecture.searchStudent(studentNumber));
-            } // í•™ë²ˆê¹Œì§€ ë°›ì•„ì˜´. í•™ìƒì •ë³´ë¥¼ ì°½ì— ë„ì›Œì£¼ë©´ ë¨
-
+                String input = getStudentNumber.getText();
+                if (input.equals(""))
+                {
+                    JOptionPane.showMessageDialog(null, "ÇĞ¹øÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+                }
+                else
+                {
+                    try {
+                        studentNumber = Integer.parseInt(input);
+                        textPane1.setText(lecture.searchStudent(studentNumber));
+                    } catch (NumberFormatException a) {
+                        JOptionPane.showMessageDialog(null, "ÇĞ¹ø¿¡ ¼ıÀÚ¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+                    }
+                }
+            } // ÇĞ¹ø±îÁö ¹Ş¾Æ¿È. ÇĞ»ıÁ¤º¸¸¦ Ã¢¿¡ ¶ç¿öÁÖ¸é µÊ
         });
 
         cancelButton.addActionListener(new ActionListener() {
@@ -50,7 +61,7 @@ public class SearchStudentDialog extends JFrame {
     }
 
     public static void main(String[] args) {
-        ModifyStudentDialog dialog = new ModifyStudentDialog(null);
+        SearchStudentDialog dialog = new SearchStudentDialog(null);
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);

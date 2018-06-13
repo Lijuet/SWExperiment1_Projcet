@@ -8,10 +8,7 @@ public class Delete {
     BufferedReader br = null;
     int studentNumber;
     String FileName;
-    public Delete()
-    {
-        FileName = "System_StudentInfo.csv";
-    }
+    // public Delete() { FileName = "System_StudentInfo.csv"; }
     public Delete(String fileName)
     {
         this.FileName = fileName;
@@ -25,19 +22,19 @@ public class Delete {
         try
         {
             StudentDelete = new FileInputStream(FileName);
-            br = new BufferedReader(new InputStreamReader(StudentDelete, "MS949"));
+            br = new BufferedReader(new InputStreamReader(StudentDelete));
             String line;
 
             while((line = br.readLine()) != null)
             {
                 String[] field = line.split(",");
-                if(Integer.parseInt(field[1]) != studentNumber)
+                if(!field[1].equals(String.valueOf(studentNumber)))
                 {
-                    dummy += (line + "\r\n" );
+                    dummy += (line.trim() + "\r\n" );
                 }
             }
 
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileName), "euc-kr"));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileName)));
             writer.write(dummy);
 
             writer.close();

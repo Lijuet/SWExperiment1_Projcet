@@ -10,10 +10,7 @@ public class Writer {
         this.FileName = Filename;
     }
 
-    public Writer ()
-    {
-        this.FileName = "System_StudentInfo.csv";
-    }
+    // public Writer () { this.FileName = "System_StudentInfo.csv"; }
 
 
     public void studentWriter(Student Student)

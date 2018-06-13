@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import Components.*;
 import ModifyFiles.Reader;
 
+/*
 public class Main {
 
 	public static void main(String[] args) {
@@ -16,7 +17,7 @@ public class Main {
 		Lecture SP = new Lecture("SystemProgramming");
 		Reader studentReader = new Reader();
 		ArrayList<Student> SystemStudent = new ArrayList<>();
-		studentReader.studentReader(SystemStudent); // System_StudentInfo ì•ˆì˜ í•™ìƒë“¤ì´ ì €ì¥ë¨
+		studentReader.studentReader(SystemStudent); // System_StudentInfo ¾ÈÀÇ ÇĞ»ıµéÀÌ ÀúÀåµÊ
 
 
 		SP.addStudent(new Student(name,null,null,Id));
@@ -29,3 +30,4 @@ public class Main {
 		SP.searchStudent(2);
 	}
 }
+*/

@@ -3,6 +3,7 @@ import Components.Lecture;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.MessageDigest;
 
 public class DeleteStudentDialog extends JFrame {
     private JTextField getStudentNumber;
@@ -24,23 +25,42 @@ public class DeleteStudentDialog extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                studentNumber = Integer.parseInt(getStudentNumber.getText());
-                textPane1.setText(lecture.searchStudent(studentNumber));
-            } // í•™ë²ˆê¹Œì§€ ë°›ì•„ì˜´. í•™ìƒì •ë³´ë¥¼ ì°½ì— ë„ì›Œì£¼ë©´ ë¨
+                String temp = getStudentNumber.getText();
+                if (temp.equals(""))
+                {
+                    JOptionPane.showMessageDialog(null, "ÇĞ¹øÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+                }
+                else
+                {
+                    try {
+                        studentNumber = Integer.parseInt(temp);
+                        textPane1.setText(lecture.searchStudent(studentNumber));
+                    } catch (NumberFormatException a) {
+                        JOptionPane.showMessageDialog(null, "ÇĞ¹ø¿¡ ¼ıÀÚ¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
+                    }
+                }
+            } // ÇĞ¹ø±îÁö ¹Ş¾Æ¿È. ÇĞ»ıÁ¤º¸¸¦ Ã¢¿¡ ¶ç¿öÁÖ¸é µÊ
         });
 
         deleteButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if (studentNumber != -1)
+                String temp = getStudentNumber.getText();
+                if (temp.equals(""))
                 {
-                    lecture.deleteStudent(studentNumber);
-                    // "ì‚­ì œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤" ì°½ ì¶œë ¥
+                    JOptionPane.showMessageDialog(null, "ÇĞ¹øÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä");
                 }
                 else
                 {
-                    // "í•™ë²ˆì„ ì…ë ¥í•´ ì£¼ì„¸ìš”" ì°½ ì¶œë ¥
+                    if (lecture.existStudent(studentNumber) == 1)
+                    {
+                        int result = JOptionPane.showConfirmDialog(null, "Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?", "Delete", 0);
+                        if (result == JOptionPane.OK_OPTION) {
+                            lecture.deleteStudent(studentNumber);
+                            JOptionPane.showMessageDialog(null, "»èÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù"); // "»èÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù" Ã¢ Ãâ·Â
+                        }
+                    }
                 }
             }
         });
@@ -53,7 +73,7 @@ public class DeleteStudentDialog extends JFrame {
     }
 
     public static void main(String[] args) {
-        ModifyStudentDialog dialog = new ModifyStudentDialog(null);
+        DeleteStudentDialog dialog = new DeleteStudentDialog(null);
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
